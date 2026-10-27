@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Tabelle erzeugen</title>
+
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        /* text-align: center; */
+        /* background-color: hotpink; */
+    }
+    table {
+        border-collapse: collapse;
+        /* align-items: center; */
+        width:50% ;
+        background-color: pink;
+    }
+    th {
+        background-color: deeppink;
+    }
+</style>
+
+<script>
+
+function build() {
+    let b = document.getElementById('start');
+    let d = document.createElement('div');
+    b.appendChild(d);
+    let h = document.createElement('h2');
+    h.textContent = 'Hoverable Table';
+    d.appendChild(h);
+
+    function makeElement(eName, parent=null, text='') {
+        let el=document.createElement(eName);
+        if (parent) parent.appendChild(el);
+        if (text) el.textContent =text;
+        return el;
+    };
+    let t = makeElement('table', d);
+    let thd = makeElement('thead', t);
+    let tbd = makeElement('tbody', t);
+    let trh = makeElement('tr', thd);
+    let headers = ['First Name', 'Last Name', 'Points'];
+    for (let i=0; i<headers.length; i++) {
+        let trth = makeElement('th', trh);
+        trth.textContent = headers[i];
+    }
+    let firstnames = ['Jill', 'Eve', 'Adam'];
+    let lastnames = ['Smith', 'Jackson','Johnson'];
+    let points = [50, 94 ,67];
+     for (let i=0; i<firstnames.length; i++) {
+        let trtb = makeElement('tr', tbd);
+        makeElement('td', trtb, firstnames[i]);
+        makeElement('td', trtb, lastnames[i]);
+        makeElement('td', trtb, points[i]);
+    }
+}
+</script>
+
+    </head>
+
+    <body id='start'>
+        <input type='button' value='Tabelle build' onclick='build();'>
+    </body>
+
+</html>
+
+
+    <!-- let t = makeElement('table', d);
+    // let t = document.createElement('table');
+    // h.appendChild(t);
+    let thd = makeElement('thead', t);
+    // let th = document.createElement('thead');
+    // t.appendChild(thead);
+    let tbd = makeElement('tbody', t);
+    // let tb = document.createElement('tbody');
+    // t.appendChild(tb); -->
